@@ -77,7 +77,18 @@ flutter:
   # example:
   # fonts:
   #   - family: Schyler
-  #     fonts:
+  fonts:
+    - family: Ribeye
+      fonts:
+        - asset: assets/fonts/Ribeye-Regular.ttf
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Regular.ttf
+        - asset: assets/fonts/Nunito-Italic.ttf
+          style: italic
+        - asset: assets/fonts/Nunito-ExtraBold.ttf
+          weight: 700
+
   #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
