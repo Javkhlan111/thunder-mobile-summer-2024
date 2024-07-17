@@ -30,9 +30,6 @@ void main() {
                   SizedBox(width: 10,),
 
 
-
-
-
                 ],
               ),
               GradientText("Game", 38),
