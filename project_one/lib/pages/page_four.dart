@@ -3,22 +3,22 @@ import '../widgets/gradient_letter.dart';
 import '../widgets/gradient_text.dart';
 import '../widgets/keyboard.dart';
 
-class PageThree extends StatefulWidget {
-  const PageThree({super.key});
+class PageFour extends StatefulWidget {
+  const PageFour({super.key});
 
   @override
-  State<PageThree> createState() => _PageThreeState();
+  State<PageFour> createState() => _PageFourState();
 }
 
-class _PageThreeState extends State<PageThree> {
+class _PageFourState extends State<PageFour> {
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-        image: AssetImage("assets/images/back2.png"),
-        fit: BoxFit.cover,
-      )),
+            image: AssetImage("assets/images/back2.png"),
+            fit: BoxFit.cover,
+          )),
       width: double.infinity,
       child: Column(children: [
         SizedBox(
@@ -59,7 +59,7 @@ class _PageThreeState extends State<PageThree> {
                     width: 25,
                     height: 33,
                     child: Text(
-                      '0',
+                      '1',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFFE76A01),
@@ -107,7 +107,7 @@ class _PageThreeState extends State<PageThree> {
           width: 68,
           height: 33,
           child: Text(
-            '0/10',
+            '2/10',
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Color(0xFFFF9002),
@@ -126,23 +126,23 @@ class _PageThreeState extends State<PageThree> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             //SizedBox(width: 5,),
-             Container(
-                width: 32,
-                height: 32,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/images/previous 1.png"),
-                    fit: BoxFit.fill,
-                  ),
+            Container(
+              width: 32,
+              height: 32,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/previous 1.png"),
+                  fit: BoxFit.fill,
                 ),
               ),
+            ),
 
             Container(
               width: 265,
               height: 263,
               decoration: ShapeDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/IMG.png"),
+                  image: AssetImage("assets/images/elsa.png"),
                   fit: BoxFit.fill,
                 ),
                 shape: RoundedRectangleBorder(
@@ -185,11 +185,7 @@ class _PageThreeState extends State<PageThree> {
             SizedBox(
               width: 7.17,
             ),
-            GradientLetter("", 43, 43, 9.4, 6.8, 0),
-            SizedBox(
-              width: 7.17,
-            ),
-            GradientLetter("", 43, 43, 9.4, 6.8, 0),
+
           ],
         ),
         SizedBox(
@@ -244,12 +240,12 @@ class _PageThreeState extends State<PageThree> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    GradientLetter("A", 42, 42, 10.92, 5.46, 25.93),
+                    GradientLetter("R", 42, 42, 10.92, 5.46, 25.93),
                     GradientLetter("E", 42, 42, 10.92, 5.46, 25.93),
                     GradientLetter("T", 42, 42, 10.92, 5.46, 25.93),
                     GradientLetter("I", 42, 42, 10.92, 5.46, 25.93),
                     GradientLetter("P", 42, 42, 10.92, 5.46, 25.93),
-                    GradientLetter("M", 42, 42, 10.92, 5.46, 25.93),
+                    GradientLetter("S", 42, 42, 10.92, 5.46, 25.93),
                     GradientLetter("O", 42, 42, 10.92, 5.46, 25.93),
                   ],
                 ),
@@ -258,9 +254,9 @@ class _PageThreeState extends State<PageThree> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GradientLetter("Y", 42, 42, 10.92, 5.46, 25.93),
-                    GradientLetter("C", 42, 42, 10.92, 5.46, 25.93),
+                    GradientLetter("A", 42, 42, 10.92, 5.46, 25.93),
                     GradientLetter("B", 42, 42, 10.92, 5.46, 25.93),
-                    GradientLetter("K", 42, 42, 10.92, 5.46, 25.93),
+                    GradientLetter("L", 42, 42, 10.92, 5.46, 25.93),
                     GradientLetter("N", 42, 42, 10.92, 5.46, 25.93),
                     GradientLetter("I", 42, 42, 10.92, 5.46, 25.93),
                     GradientLetter("E", 42, 42, 10.92, 5.46, 25.93),
@@ -307,6 +303,6 @@ class _PageThreeState extends State<PageThree> {
             )),
         /////////KKEEYYBOARD
       ]),
-    );
+    );;
   }
 }

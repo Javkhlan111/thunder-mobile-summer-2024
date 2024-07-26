@@ -21,16 +21,14 @@ class PageOne extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GradientLetter("W"),
+                GradientLetter("W", 60, 60, 1, 8, 38),
                 SizedBox(width: 10,),
-                GradientLetter("O"),
+                GradientLetter("O", 60, 60, 1, 8, 38),
                 SizedBox(width: 10,),
-                GradientLetter("R"),
+                GradientLetter("R", 60, 60, 1, 8, 38),
                 SizedBox(width: 10,),
-                GradientLetter("D"),
+                GradientLetter("D", 60, 60, 1, 8, 38),
                 SizedBox(width: 10,),
-
-
               ],
             ),
             GradientText("Game", 38),

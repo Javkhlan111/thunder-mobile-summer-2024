@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
-class Input extends StatelessWidget {
-  const Input({super.key});
+import 'package:project_one/pages/page_two.dart';
+class Input extends StatefulWidget {
+  late String name;
+  final void start;
+  Input(this.name, this.start, {super.key});
+
+  @override
+  State<Input> createState() => _InputState();
+}
+
+class _InputState extends State<Input> {
+  final nameEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -10,51 +20,44 @@ class Input extends StatelessWidget {
           width: 310,
           height: 50,
           padding: const EdgeInsets.symmetric(horizontal: 25),
-          decoration: ShapeDecoration(
-            color: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25),
+          child: TextField(
+            controller: nameEditingController,
+            cursorColor: Color(0xFFFFA500),
+            style: TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 18,
+              fontWeight: FontWeight.w600
             ),
-            shadows: [
-              BoxShadow(
-                color: Color(0x196A4423),
-                blurRadius: 100,
-                offset: Offset(0, 4),
-                spreadRadius: 0,
-              )
-            ],
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                'Type here',
-                textAlign: TextAlign.center,
-                style: TextStyle(
+            decoration:
+              InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25),
+                  borderSide: BorderSide.none,
+                ),
+                hintText: "Type here",
+                hintStyle: TextStyle(
                   color: Color(0xFFE76A01),
                   fontSize: 18,
-                  fontFamily: 'Nunito',
-                  fontWeight: FontWeight.w600,
+                  fontFamily: "Nunito",
+                  fontWeight: FontWeight.w500,
                   height: 0,
                 ),
-              ),
-              Container(
-                width: 15,
-                height: 15,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage("https://via.placeholder.com/15x15"),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ),
-            ],
+                filled: true,
+                fillColor: Colors.white,
+                suffixIcon: IconButton(onPressed: (){},icon: Icon(Icons.clear), color: Colors.orange,)
+            ),
+            onSubmitted: (text){
+              setState((){
+                widget.name = text;
+                widget.start;
+              });
+            },
+
           ),
         ),
       ],
-
     );
   }
 }
+
+//
