@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_one/widgets/modal.dart';
 import '../widgets/gradient_letter.dart';
 import '../widgets/gradient_text.dart';
 import '../widgets/keyboard.dart';
@@ -16,9 +17,9 @@ class _PageFourState extends State<PageFour> {
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/back2.png"),
-            fit: BoxFit.cover,
-          )),
+        image: AssetImage("assets/images/back2.png"),
+        fit: BoxFit.cover,
+      )),
       width: double.infinity,
       child: Column(children: [
         SizedBox(
@@ -31,7 +32,13 @@ class _PageFourState extends State<PageFour> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.asset("assets/images/exit.png", width: 32, height: 32),
+              TextButton(
+                child: Image.asset("assets/images/exit.png",
+                    width: 32, height: 32),
+                onPressed: (){
+                  exitDialog(context, "ARE YOU SURE TO QUIT?", "Yes", "No");
+                },
+              ),
               Center(
                 child: SizedBox(
                   width: 64,
@@ -185,7 +192,6 @@ class _PageFourState extends State<PageFour> {
             SizedBox(
               width: 7.17,
             ),
-
           ],
         ),
         SizedBox(
@@ -268,11 +274,13 @@ class _PageFourState extends State<PageFour> {
                     Container(
                       width: 78,
                       height: 35,
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 2),
                       decoration: ShapeDecoration(
                         color: Colors.white,
                         shape: RoundedRectangleBorder(
-                            side: BorderSide(width: 1, color: Color(0x3AE76A01)),
+                            side:
+                                BorderSide(width: 1, color: Color(0x3AE76A01)),
                             borderRadius: BorderRadius.circular(10.92)),
                       ),
                       child: Row(
@@ -303,6 +311,7 @@ class _PageFourState extends State<PageFour> {
             )),
         /////////KKEEYYBOARD
       ]),
-    );;
+    );
+    ;
   }
 }
