@@ -79,7 +79,7 @@ class DemoFlexible extends StatelessWidget {
           Flexible(flex: 1,
               child: LabeledContainer(text: "25%",
                   color: Colors.deepOrange),),
-          Flexible(flex: 1,
+          Flexible(flex: 2,
             child: LabeledContainer(text: "50%",
                 color: Colors.blue),)
         ],
