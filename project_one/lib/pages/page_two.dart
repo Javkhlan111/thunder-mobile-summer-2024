@@ -3,9 +3,16 @@ import 'package:project_one/widgets/input.dart';
 import '../widgets/bar.dart';
 import '../widgets/gradient_letter.dart';
 import '../widgets/gradient_text.dart';
+import 'page_three.dart';
 
 class PageTwo extends StatefulWidget {
-  const PageTwo({super.key});
+  const PageTwo({super.key, this.name});
+  final name;
+
+  // void changePage(BuildContext context) {
+  //   Navigator.of(context)
+  //       .push(MaterialPageRoute(builder: (context) => PageThree()));
+  // }
 
   @override
   State<PageTwo> createState() => _PageTwoState();
@@ -102,7 +109,12 @@ class _PageTwoState extends State<PageTwo> {
                         borderRadius: BorderRadius.all(Radius.circular(25)),
                       ),
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => PageThree(
+                               ///name: nameEditingController.text,
+                              )));
+                        },
                         child: Text(
                           "START",
                           style: TextStyle(fontSize: 24, color: Colors.white),

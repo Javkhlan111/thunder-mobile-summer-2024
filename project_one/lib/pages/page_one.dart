@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-
+import 'page_two.dart';
 import '../widgets/gradient_letter.dart';
 import '../widgets/gradient_text.dart';
 class PageOne extends StatelessWidget {
   const PageOne({super.key});
+  void changePage(BuildContext context){
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => PageTwo()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +53,9 @@ class PageOne extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(25)),
                 ),
                 child: TextButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    changePage(context);
+                  },
                   child: Text("PLAY", style: TextStyle(fontSize: 24, color: Colors.white),),
                   style: TextButton.styleFrom(),
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_one/pages/page_two.dart';
+import 'package:project_one/pages/page_three.dart';
 class Input extends StatefulWidget {
   late String name;
   final void start;
