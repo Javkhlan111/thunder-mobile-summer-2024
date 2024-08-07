@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_one/pages/page_four.dart';
 import 'package:project_one/widgets/input.dart';
 import '../widgets/bar.dart';
 import '../widgets/gradient_letter.dart';
@@ -8,11 +9,6 @@ import 'page_three.dart';
 class PageTwo extends StatefulWidget {
   const PageTwo({super.key, this.name});
   final name;
-
-  // void changePage(BuildContext context) {
-  //   Navigator.of(context)
-  //       .push(MaterialPageRoute(builder: (context) => PageThree()));
-  // }
 
   @override
   State<PageTwo> createState() => _PageTwoState();
@@ -27,6 +23,11 @@ class _PageTwoState extends State<PageTwo> {
     setState(() {
       isReady = true;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -112,7 +113,7 @@ class _PageTwoState extends State<PageTwo> {
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => PageThree(
-                               ///name: nameEditingController.text,
+                               name: nameEditingController.text,
                               )));
                         },
                         child: Text(

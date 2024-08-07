@@ -119,6 +119,34 @@ class Ex12{
   }
 }
 
+class Ex13 {
+  void printTwentyToOne(){
+    for(int i = 20; i > 0; i=i-1) {
+      print("${i}");
+    }
+  }
+}
+
+class Ex14{
+  void square(){
+    for(int i = 1; i < 21;  i++) {
+      print(i*i);
+    }
+  }
+}
+
+class Ex15{
+  void quadratSum(){
+    int sum=0;
+
+    for(int i = 1; i < 6;  i=i+1) {
+      sum = sum + i*i;
+
+    }
+    print("The quadrat sum of numbers from 1 to 5 is ${sum}");
+  }
+}
+
 void main(){
   Ex01 ex01 = Ex01();
   ex01.whileLoop();
@@ -156,7 +184,13 @@ void main(){
   Ex12 ex12 = Ex12();
   ex12.squarert();
   print("====================");
-
-
-
+  Ex13 ex13 = Ex13();
+  ex13.printTwentyToOne();
+  print("====================");
+  Ex14 ex14 = Ex14();
+  ex14.square();
+  print("====================");
+  Ex15 ex15 = Ex15();
+  ex15.quadratSum();
+  print("====================");
 }

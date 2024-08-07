@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_one/pages/page_two.dart';
 import 'package:project_one/pages/page_three.dart';
 class Input extends StatefulWidget {
-  late String name;
+  String name;
   final void start;
   Input(this.name, this.start, {super.key});
 
