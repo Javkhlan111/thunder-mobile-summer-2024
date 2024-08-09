@@ -12,7 +12,6 @@ import 'package:project_one/widgets/input.dart';
 import 'package:project_one/widgets/modal.dart';
 import '../models/game_model.dart';
 
-
 class PageThree extends StatefulWidget {
   final String name;
   const PageThree({super.key, required this.name});
@@ -22,14 +21,15 @@ class PageThree extends StatefulWidget {
 }
 
 class _PageThreeState extends State<PageThree> {
-
   List<GameModel> models = [];
+  List<GameNavigation> navigationButtons = [];
   int currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
     models = GameRepository().repositories;
+    navigationButtons = GameRepository().navigations;
   }
 
   @override
@@ -129,16 +129,22 @@ class _PageThreeState extends State<PageThree> {
             SizedBox(
               height: 4,
             ),
-      
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(width: 5,),
+                SizedBox(
+                  width: 5,
+                ),
                 TextButton(
-                  onPressed: (){
+                  onPressed: () {
                     setState(() {
-                      if (currentIndex>=1){
+                      if (currentIndex >= 1) {
                         currentIndex--;
+                      }
+                      else{
+                        changeNavigationButtons()
+
                       }
                     });
                   },
@@ -153,7 +159,6 @@ class _PageThreeState extends State<PageThree> {
                     ),
                   ),
                 ),
-      
                 Center(
                   child: Container(
                     width: 265,
@@ -174,7 +179,7 @@ class _PageThreeState extends State<PageThree> {
                   onPressed: () {
                     setState(() {
                       print(currentIndex);
-                      if (currentIndex<models.length-1){
+                      if (currentIndex < models.length - 1) {
                         currentIndex++;
                       }
                     });
@@ -196,31 +201,15 @@ class _PageThreeState extends State<PageThree> {
               height: 27,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GradientLetter("", 43, 43, 9.4, 6.8, 0),
-                SizedBox(
-                  width: 7.17,
-                ),
-                GradientLetter("", 43, 43, 9.4, 6.8, 0),
-                SizedBox(
-                  width: 7.17,
-                ),
-                GradientLetter("", 43, 43, 9.4, 6.8, 0),
-                SizedBox(
-                  width: 7.17,
-                ),
-                GradientLetter("", 43, 43, 9.4, 6.8, 0),
-                SizedBox(
-                  width: 7.17,
-                ),
-                GradientLetter("", 43, 43, 9.4, 6.8, 0),
-                SizedBox(
-                  width: 7.17,
-                ),
-                GradientLetter("", 43, 43, 9.4, 6.8, 0),
-              ],
-            ),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                    GameRepository().repositories[currentIndex].name.length,
+                    (index) {
+                        return Container(
+                          padding: EdgeInsets.all(4.17),
+                    child:
+                    GradientLetter("", 43, 43, 9.4, 6.8, 0));}
+            )),
             SizedBox(
               height: 11.5,
             ),
@@ -245,7 +234,7 @@ class _PageThreeState extends State<PageThree> {
               ),
             ]),
             SizedBox(
-              height: 57,
+              height: 49,
             ),
             Container(
                 width: double.infinity,
