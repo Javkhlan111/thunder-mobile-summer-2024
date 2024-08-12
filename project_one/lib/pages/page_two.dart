@@ -5,6 +5,7 @@ import '../widgets/bar.dart';
 import '../widgets/gradient_letter.dart';
 import '../widgets/gradient_text.dart';
 import 'page_three.dart';
+import 'package:word_search_safety/word_search_safety.dart';
 
 class PageTwo extends StatefulWidget {
   const PageTwo({super.key, this.name});

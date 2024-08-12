@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:project_one/models/word_puzzle.dart';
 import 'package:project_one/pages/page_four.dart';
 import 'package:project_one/repositories/game_repository.dart';
 import '../widgets/gradient_letter.dart';
@@ -11,9 +12,11 @@ import 'page_two.dart';
 import 'package:project_one/widgets/input.dart';
 import 'package:project_one/widgets/modal.dart';
 import '../models/game_model.dart';
+import 'package:word_search_safety/word_search_safety.dart';
 
 class PageThree extends StatefulWidget {
   final String name;
+
   const PageThree({super.key, required this.name});
 
   @override
@@ -22,14 +25,17 @@ class PageThree extends StatefulWidget {
 
 class _PageThreeState extends State<PageThree> {
   List<GameModel> models = [];
-  List<GameNavigation> navigationButtons = [];
+  //List<GameNavigation> navigationButtons = [];
   int currentIndex = 0;
+  List<String> hiddenWords = [];
 
   @override
   void initState() {
     super.initState();
     models = GameRepository().repositories;
-    navigationButtons = GameRepository().navigations;
+    //navigationButtons = GameRepository().navigations;
+    hiddenWords = GameRepository().repositories[currentIndex].name.split('');
+    print(hiddenWords);
   }
 
   @override
@@ -141,11 +147,7 @@ class _PageThreeState extends State<PageThree> {
                     setState(() {
                       if (currentIndex >= 1) {
                         currentIndex--;
-                      }
-                      else{
-                        changeNavigationButtons()
-
-                      }
+                      } else {}
                     });
                   },
                   child: Container(
@@ -202,14 +204,12 @@ class _PageThreeState extends State<PageThree> {
             ),
             Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                    GameRepository().repositories[currentIndex].name.length,
-                    (index) {
-                        return Container(
-                          padding: EdgeInsets.all(4.17),
-                    child:
-                    GradientLetter("", 43, 43, 9.4, 6.8, 0));}
-            )),
+                children: List.generate(hiddenWords.length, (index) {
+                  return Container(
+                      padding: EdgeInsets.all(4.17),
+                      child: GradientLetter(
+                          hiddenWords[index], 43, 43, 9.4, 6.8, 0));
+                })),
             SizedBox(
               height: 11.5,
             ),
@@ -260,31 +260,32 @@ class _PageThreeState extends State<PageThree> {
                 ),
                 child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GradientLetter("A", 42, 42, 10.92, 5.46, 25.93),
-                        GradientLetter("E", 42, 42, 10.92, 5.46, 25.93),
-                        GradientLetter("T", 42, 42, 10.92, 5.46, 25.93),
-                        GradientLetter("I", 42, 42, 10.92, 5.46, 25.93),
-                        GradientLetter("P", 42, 42, 10.92, 5.46, 25.93),
-                        GradientLetter("M", 42, 42, 10.92, 5.46, 25.93),
-                        GradientLetter("O", 42, 42, 10.92, 5.46, 25.93),
-                      ],
-                    ),
-                    SizedBox(height: 7),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GradientLetter("Y", 42, 42, 10.92, 5.46, 25.93),
-                        GradientLetter("C", 42, 42, 10.92, 5.46, 25.93),
-                        GradientLetter("B", 42, 42, 10.92, 5.46, 25.93),
-                        GradientLetter("K", 42, 42, 10.92, 5.46, 25.93),
-                        GradientLetter("N", 42, 42, 10.92, 5.46, 25.93),
-                        GradientLetter("I", 42, 42, 10.92, 5.46, 25.93),
-                        GradientLetter("E", 42, 42, 10.92, 5.46, 25.93),
-                      ],
-                    ),
+                    WordSearch(),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     GradientLetter("A", 42, 42, 10.92, 5.46, 25.93),
+                    //     GradientLetter("E", 42, 42, 10.92, 5.46, 25.93),
+                    //     GradientLetter("T", 42, 42, 10.92, 5.46, 25.93),
+                    //     GradientLetter("I", 42, 42, 10.92, 5.46, 25.93),
+                    //     GradientLetter("P", 42, 42, 10.92, 5.46, 25.93),
+                    //     GradientLetter("M", 42, 42, 10.92, 5.46, 25.93),
+                    //     GradientLetter("O", 42, 42, 10.92, 5.46, 25.93),
+                    //   ],
+                    // ),
+                    // SizedBox(height: 7),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     GradientLetter("Y", 42, 42, 10.92, 5.46, 25.93),
+                    //     GradientLetter("C", 42, 42, 10.92, 5.46, 25.93),
+                    //     GradientLetter("B", 42, 42, 10.92, 5.46, 25.93),
+                    //     GradientLetter("K", 42, 42, 10.92, 5.46, 25.93),
+                    //     GradientLetter("N", 42, 42, 10.92, 5.46, 25.93),
+                    //     GradientLetter("I", 42, 42, 10.92, 5.46, 25.93),
+                    //     GradientLetter("E", 42, 42, 10.92, 5.46, 25.93),
+                    //   ],
+                    // ),
                     Padding(padding: EdgeInsets.only(top: 16, left: 10)),
                     Row(
                       children: [
