@@ -38,7 +38,7 @@ class GradientLetter extends StatelessWidget{
                 ),
                 child: Center(
                   child: Text(
-                    letter,
+                    letter.toUpperCase(),
                     style: TextStyle(
                       fontFamily: "Ribeye",
                       fontSize: fontSize,

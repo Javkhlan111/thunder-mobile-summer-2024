@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:project_one/models/word_puzzle.dart';
 import 'package:project_one/pages/page_four.dart';
@@ -13,6 +12,7 @@ import 'package:project_one/widgets/input.dart';
 import 'package:project_one/widgets/modal.dart';
 import '../models/game_model.dart';
 import 'package:word_search_safety/word_search_safety.dart';
+import '../models/hidden_word_widget.dart';
 
 class PageThree extends StatefulWidget {
   final String name;
@@ -25,19 +25,50 @@ class PageThree extends StatefulWidget {
 
 class _PageThreeState extends State<PageThree> {
   List<GameModel> models = [];
+  List<String> nameOfCharacter = ["M", 'I', 'C', 'K', 'E', 'Y'];
+
   //List<GameNavigation> navigationButtons = [];
   int currentIndex = 0;
-  List<String> hiddenWords = [];
+  // List<String> hiddenWords = [];
+
+  WSSettings wsSettings =
+      WSSettings(width: 7, height: 2, preferOverlap: false, orientations: [
+    WSOrientation.horizontal,
+    WSOrientation.vertical,
+  ]);
+
+  WordSearchSafety wordSearch = WordSearchSafety();
+  WSNewPuzzle? newPuzzle;
+  WSSolved? wsSolved;
+  List<bool> revealedHiddenword = [];
 
   @override
   void initState() {
     super.initState();
     models = GameRepository().repositories;
     //navigationButtons = GameRepository().navigations;
-    hiddenWords = GameRepository().repositories[currentIndex].name.split('');
-    print(hiddenWords);
+    // hiddenWords = GameRepository().repositories[currentIndex].name.split('');
+    // print(hiddenWords);
+    revealedHiddenword = List.filled(nameOfCharacter.length, false);
+    newPuzzle = wordSearch.newPuzzle(nameOfCharacter, wsSettings);
+    if (newPuzzle!.errors!.isEmpty) {
+      wsSolved = wordSearch.solvePuzzle(newPuzzle!.puzzle!, nameOfCharacter);
+    }
   }
 
+  void onLetterSelected(String letter) {
+    setState(() {
+      updateHiddenWordGrid(letter);
+    });
+  }
+  void updateHiddenWordGrid(letter) {
+    print("updateHiddenWordGrid: $letter");
+    for (int i = 0; i < nameOfCharacter.length; i++) {
+      if (nameOfCharacter[i] == letter) {
+        revealedHiddenword[i] = true;
+      }
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -204,11 +235,15 @@ class _PageThreeState extends State<PageThree> {
             ),
             Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(hiddenWords.length, (index) {
-                  return Container(
-                      padding: EdgeInsets.all(4.17),
-                      child: GradientLetter(
-                          hiddenWords[index], 43, 43, 9.4, 6.8, 0));
+                children: List.generate(nameOfCharacter.length, (index) {
+                  if (revealedHiddenword[index]) {
+                    print(revealedHiddenword[index]);
+                    print('name of character ${nameOfCharacter[index]}');
+                    return GradientLetter('${nameOfCharacter[index]}', 43, 43, 9.4, 6.8, 25);
+                      //Text(nameOfCharacter[index]);
+                  } else {
+                    return GradientLetter("", 43, 43, 9.4, 6.8, 25);
+                  }
                 })),
             SizedBox(
               height: 11.5,
@@ -260,33 +295,28 @@ class _PageThreeState extends State<PageThree> {
                 ),
                 child: Column(
                   children: [
-                    WordSearch(),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children: [
-                    //     GradientLetter("A", 42, 42, 10.92, 5.46, 25.93),
-                    //     GradientLetter("E", 42, 42, 10.92, 5.46, 25.93),
-                    //     GradientLetter("T", 42, 42, 10.92, 5.46, 25.93),
-                    //     GradientLetter("I", 42, 42, 10.92, 5.46, 25.93),
-                    //     GradientLetter("P", 42, 42, 10.92, 5.46, 25.93),
-                    //     GradientLetter("M", 42, 42, 10.92, 5.46, 25.93),
-                    //     GradientLetter("O", 42, 42, 10.92, 5.46, 25.93),
-                    //   ],
-                    // ),
-                    // SizedBox(height: 7),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children: [
-                    //     GradientLetter("Y", 42, 42, 10.92, 5.46, 25.93),
-                    //     GradientLetter("C", 42, 42, 10.92, 5.46, 25.93),
-                    //     GradientLetter("B", 42, 42, 10.92, 5.46, 25.93),
-                    //     GradientLetter("K", 42, 42, 10.92, 5.46, 25.93),
-                    //     GradientLetter("N", 42, 42, 10.92, 5.46, 25.93),
-                    //     GradientLetter("I", 42, 42, 10.92, 5.46, 25.93),
-                    //     GradientLetter("E", 42, 42, 10.92, 5.46, 25.93),
-                    //   ],
-                    // ),
-                    Padding(padding: EdgeInsets.only(top: 16, left: 10)),
+                    Expanded(
+                      child: GridView.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: wsSettings.width),
+                          itemCount: wsSettings.height * wsSettings.width,
+                          itemBuilder: (BuildContext context, int index) {
+                            int row = index ~/ wsSettings.width;
+                            int column = index % wsSettings.width;
+
+                            final letter = newPuzzle!.puzzle![row][column];
+                            return GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    onLetterSelected(letter);
+                                  });
+                                },
+                                child: GradientLetter(
+                                    letter, 20, 20, 10.92, 5.46, 25.93));
+                          }),
+                    ),
+                    Padding(padding: EdgeInsets.only(top: 14, left: 10)),
                     Row(
                       children: [
                         Container(
@@ -308,9 +338,7 @@ class _PageThreeState extends State<PageThree> {
                                 width: 18,
                                 height: 18,
                               ),
-                              SizedBox(
-                                width: 3,
-                              ),
+                              SizedBox(width: 3),
                               Text(
                                 "abc",
                                 style: TextStyle(
@@ -327,10 +355,25 @@ class _PageThreeState extends State<PageThree> {
                     )
                   ],
                 )),
-            /////////KKEEYYBOARD
           ]),
         ),
       ),
     );
   }
 }
+
+// WordSearch(),
+// Row(
+//   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//   children: [
+//     GradientLetter("A", 42, 42, 10.92, 5.46, 25.93),
+//     GradientLetter("E", 42, 42, 10.92, 5.46, 25.93),
+//     GradientLetter("T", 42, 42, 10.92, 5.46, 25.93),
+//     GradientLetter("I", 42, 42, 10.92, 5.46, 25.93),
+//     GradientLetter("P", 42, 42, 10.92, 5.46, 25.93),
+//     GradientLetter("M", 42, 42, 10.92, 5.46, 25.93),
+//     GradientLetter("O", 42, 42, 10.92, 5.46, 25.93),
+//   ],
+// ),
+// SizedBox(height: 7),
+//
