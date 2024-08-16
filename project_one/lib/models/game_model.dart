@@ -1,8 +1,8 @@
 class GameModel{
   String imagePath;
-  String name;
+  List<String> hiddenWord;
 
-  GameModel({required this.name, required this.imagePath});
+  GameModel({required this.hiddenWord, required this.imagePath});
 
 }
 

@@ -99,7 +99,7 @@ Future<void> exitDialog(BuildContext context, message, button, button2) {
                         elevation: 0,
                       ),
                       child: Text(
-                        "Yes",
+                        button,
                         style: TextStyle(
                           fontFamily: 'Nunito',
                           fontSize: 20,
@@ -132,7 +132,7 @@ Future<void> exitDialog(BuildContext context, message, button, button2) {
                         elevation: 0,
                       ),
                       child: Text(
-                        "No",
+                        button2,
                         style: TextStyle(
                           fontFamily: "Nunito",
                           fontSize: 20,
