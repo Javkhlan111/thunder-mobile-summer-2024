@@ -14,6 +14,7 @@ import 'package:project_one/widgets/modal.dart';
 import '../models/game_model.dart';
 import 'package:word_search_safety/word_search_safety.dart';
 import '../models/hidden_word_widget.dart';
+import '../widgets/gameoverWinnerBox.dart';
 
 class PageThree extends StatefulWidget {
   final String name;
@@ -71,7 +72,7 @@ class _PageThreeState extends State<PageThree> {
     });
   }
   void gameOverDialogueBox() {
-    exitDialog(context, "Game Over", "", "");
+    gameOverWinnerDialog(context, "Game Over", "Try Again",);
   }
 
   void updateHiddenWordGrid(letter) {
@@ -83,14 +84,14 @@ class _PageThreeState extends State<PageThree> {
         });
         break;
       }
-      else {
+      else if (revealedHiddenWord[i] != true){
 
           orange--;
           incorrect++;
           if(orange==0){
             gameOverDialogueBox();
-          }
-        ;
+
+          };
         break;
       }
     }
@@ -219,7 +220,7 @@ class _PageThreeState extends State<PageThree> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    for (int i = 0; i < incorrect; i++)
+                    for (int i = 0; i < incorrect && i < 5; i++)
                       Image.asset(
                         "assets/images/orangeGray.png",
                         width: 25,
