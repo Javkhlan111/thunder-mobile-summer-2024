@@ -71,8 +71,13 @@ class _PageThreeState extends State<PageThree> {
       updateHiddenWordGrid(letter);
     });
   }
+
   void gameOverDialogueBox() {
-    gameOverWinnerDialog(context, "Game Over", "Try Again",);
+    gameOverWinnerDialog(
+      context,
+      "Game Over",
+      "Try Again",
+    );
   }
 
   void updateHiddenWordGrid(letter) {
@@ -83,25 +88,20 @@ class _PageThreeState extends State<PageThree> {
           revealedHiddenWord[i] = true;
         });
         break;
-      }
-      else if (revealedHiddenWord[i] != true){
-
-          orange--;
-          incorrect++;
-          if(orange==0){
-            gameOverDialogueBox();
-
-          };
+      } else if (revealedHiddenWord[i] != true) {
+        orange--;
+        incorrect++;
+        if (orange == 0) {
+          gameOverDialogueBox();
+        }
+        ;
         break;
       }
     }
 
-
     void winnerDialogueBox() {
-      exitDialog(context, "WINNER", "Again", "Exit");
+      gameOverWinnerDialog(context, "Winner", "Play Again");
     }
-
-
 
     if (revealedHiddenWord.every((element) => element == true)) {
       print('You won!');
@@ -145,7 +145,7 @@ class _PageThreeState extends State<PageThree> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: 16.00,
+                horizontal: 8.00,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -237,7 +237,7 @@ class _PageThreeState extends State<PageThree> {
               width: 68,
               height: 33,
               child: Text(
-                '0/10',
+                '${score + 1}/3',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0xFFFF9002),
@@ -251,69 +251,79 @@ class _PageThreeState extends State<PageThree> {
             SizedBox(
               height: 4,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  width: 5,
-                ),
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      if (currentIndex >= 1) {
-                        currentIndex--;
-                      } else {}
-                    });
-                  },
-                  child: Container(
-                    width: 32,
-                    height: 32,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/previous 1.png"),
-                        fit: BoxFit.fill,
+
+            Padding(
+              padding: const EdgeInsets.symmetric(
+              horizontal: 22.00,
+            ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // SizedBox(
+                  //   width: 5,
+                  // ),
+                  if (score == 0)
+                    Container(
+                      width: 32,
+                      height: 32,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/previousGray.png"),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    )
+                  else if (score > 0)
+                    Container(
+                      width: 32,
+                      height: 32,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/previous 1.png"),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                  Center(
+                    child: Container(
+                      width: 265,
+                      height: 263,
+                      decoration: ShapeDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(gameState.currentModel.imagePath),
+                          fit: BoxFit.fill,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(width: 0.96, color: Color(0xFFE76A01)),
+                          borderRadius: BorderRadius.circular(22.95),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Center(
-                  child: Container(
-                    width: 265,
-                    height: 263,
-                    decoration: ShapeDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(gameState.currentModel.imagePath),
-                        fit: BoxFit.fill,
+                  if (score == 2)
+                    Container(
+                      width: 32,
+                      height: 32,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/nextGray.png"),
+                          fit: BoxFit.fill,
+                        ),
                       ),
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 0.96, color: Color(0xFFE76A01)),
-                        borderRadius: BorderRadius.circular(22.95),
-                      ),
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      print(currentIndex);
-                      if (currentIndex <
-                          gameState.currentModel.hiddenWord.length - 1) {
-                        currentIndex++;
-                      }
-                    });
-                  },
-                  child: Container(
-                    width: 32,
-                    height: 32,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/next.png"),
-                        fit: BoxFit.fill,
+                    )
+                  else if (score < 2)
+                    Container(
+                      width: 32,
+                      height: 32,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/next.png"),
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
             SizedBox(
               height: 27,
@@ -460,6 +470,55 @@ class _PageThreeState extends State<PageThree> {
   }
 }
 
+// TextButton(
+//     onPressed: () {
+//       if (currentIndex >= 1) {
+//         currentIndex--;
+//       } else if (currentIndex == 0) {}
+//     },
+//     // child: Container(
+//     //     width: 32,
+//     //     height: 32,
+//     //     decoration: BoxDecoration(
+//     //       image: DecorationImage(
+//     //         image: AssetImage("assets/images/previous 1.png"),
+//     //         fit: BoxFit.fill,
+//     //       ),
+//     //     ),
+//     //   );
+//     child: Container(
+//       width: 32,
+//       height: 32,
+//       decoration: BoxDecoration(
+//         image: DecorationImage(
+//           image: AssetImage("assets/images/previous 1.png"),
+//           fit: BoxFit.fill,
+//         ),
+//       ),
+//     )),
+
+// TextButton(
+//   onPressed: () {
+//     setState(() {
+//       if (currentIndex <
+//           gameState.currentModel.hiddenWord.length - 1) {
+//         currentIndex++;
+//       } else {
+//         AssetImage("assets/images/nextGray.png");
+//       }
+//     });
+//   },
+//   child: Container(
+//     width: 32,
+//     height: 32,
+//     decoration: BoxDecoration(
+//       image: DecorationImage(
+//         image: AssetImage("assets/images/next.png"),
+//         fit: BoxFit.fill,
+//       ),
+//     ),
+//   ),
+// ),
 // WordSearch(),
 // Row(
 //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
