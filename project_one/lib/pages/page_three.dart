@@ -14,9 +14,11 @@ import 'package:project_one/widgets/modal.dart';
 import '../models/game_model.dart';
 import 'package:word_search_safety/word_search_safety.dart';
 import '../models/hidden_word_widget.dart';
+import '../widgets/gameoverWinnerBox.dart';
 
 class PageThree extends StatefulWidget {
   final String name;
+
   const PageThree({super.key, required this.name});
 
   @override
@@ -27,7 +29,6 @@ class _PageThreeState extends State<PageThree> {
   int score = 0;
   int orange = 5;
   int incorrect = 0;
-
   late List<String> hiddenWord = [];
   final WSSettings settings = WSSettings(
       width: 7,
@@ -71,17 +72,11 @@ class _PageThreeState extends State<PageThree> {
     });
   }
   void gameOverDialogueBox() {
-    exitDialog(context, "Game Over", "", "");
-  }
-
-  void winnerDialogueBox() {
-    exitDialog(context, "WINNER", "Again", "Exit");
+    gameOverWinnerDialog(context, "Game Over", "Try Again",);
   }
 
   void updateHiddenWordGrid(letter) {
-
     print('updateHiddenWordGrid: $letter');
-
     for (int i = 0; i < hiddenWord.length; i++) {
       if (hiddenWord[i] == letter && !revealedHiddenWord[i]) {
         setState(() {
@@ -89,13 +84,22 @@ class _PageThreeState extends State<PageThree> {
         });
         break;
       }
-      else {
+      else if (revealedHiddenWord[i] != true){
+
           orange--;
-          incorrect = incorrect + 1;
-        }
+          incorrect++;
+          if(orange==0){
+            gameOverDialogueBox();
+
+          };
+        break;
+      }
     }
 
 
+    void winnerDialogueBox() {
+      exitDialog(context, "WINNER", "Again", "Exit");
+    }
 
 
 
@@ -110,6 +114,7 @@ class _PageThreeState extends State<PageThree> {
             gameState.currentModelIndex) {
           print('You won the game!');
           winnerDialogueBox();
+
           return;
         }
         gameState.currentModelIndex++;
@@ -122,8 +127,6 @@ class _PageThreeState extends State<PageThree> {
       }
     }
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -217,7 +220,7 @@ class _PageThreeState extends State<PageThree> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    for (int i = 0; i < incorrect; i++)
+                    for (int i = 0; i < incorrect && i < 5; i++)
                       Image.asset(
                         "assets/images/orangeGray.png",
                         width: 25,
@@ -457,4 +460,18 @@ class _PageThreeState extends State<PageThree> {
   }
 }
 
-
+// WordSearch(),
+// Row(
+//   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//   children: [
+//     GradientLetter("A", 42, 42, 10.92, 5.46, 25.93),
+//     GradientLetter("E", 42, 42, 10.92, 5.46, 25.93),
+//     GradientLetter("T", 42, 42, 10.92, 5.46, 25.93),
+//     GradientLetter("I", 42, 42, 10.92, 5.46, 25.93),
+//     GradientLetter("P", 42, 42, 10.92, 5.46, 25.93),
+//     GradientLetter("M", 42, 42, 10.92, 5.46, 25.93),
+//     GradientLetter("O", 42, 42, 10.92, 5.46, 25.93),
+//   ],
+// ),
+// SizedBox(height: 7),
+//
