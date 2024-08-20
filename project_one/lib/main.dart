@@ -6,6 +6,7 @@ import 'package:project_one/widgets/gradient_letter.dart';
 import 'package:project_one/widgets/gradient_text.dart';
 import 'package:project_one/pages/page_four.dart';
 
+
 void main() {
   runApp(MaterialApp(
     home: Scaffold(

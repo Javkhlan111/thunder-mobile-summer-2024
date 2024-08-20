@@ -1,32 +1,37 @@
 import 'package:flutter/material.dart';
 
-class PictureRow extends StatefulWidget {
-  int orange;
-  PictureRow({required this.orange});
-  @override
-  State<PictureRow> createState() => _PictureRowState();
-}
+// class PictureRow extends StatefulWidget {
+//   int orange;
+//   PictureRow({required this.orange});
+//   @override
+//   State<PictureRow> createState() => _PictureRowState();
+// }
 
-class _PictureRowState extends State<PictureRow> {
-  @override
-  Widget build(BuildContext context) {
-    // List to hold the Image and SizedBox widgets
-    List<Widget> imageWidgets = [];
+// class _PictureRowState extends State<PictureRow> {
+//   @override
+//   Widget build(BuildContext context) {
+//     // List to hold the Image and SizedBox widgets
+//     List<Widget> imageWidgets = [];
+//
+//     for (int i = 0; i < widget.orange; i++) {  // Loop to add 5 images
+//       imageWidgets.add(Image.asset(
+//         "assets/images/orange.png",
+//         width: 25,
+//         height: 25,
+//       ));
+//     }
+//
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       children: imageWidgets,
+//     );
+//   }
+// }
 
-    for (int i = 0; i < widget.orange; i++) {  // Loop to add 5 images
-      imageWidgets.add(Image.asset(
-        "assets/images/orange.png",
-        width: 25,
-        height: 25,
-      ));
-    }
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: imageWidgets,
-    );
-  }
-}
+
+
+
 
 //import 'package:flutter/material.dart';
 //

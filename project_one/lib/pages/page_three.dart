@@ -17,7 +17,6 @@ import '../models/hidden_word_widget.dart';
 
 class PageThree extends StatefulWidget {
   final String name;
-
   const PageThree({super.key, required this.name});
 
   @override
@@ -28,6 +27,7 @@ class _PageThreeState extends State<PageThree> {
   int score = 0;
   int orange = 5;
   int incorrect = 0;
+
   late List<String> hiddenWord = [];
   final WSSettings settings = WSSettings(
       width: 7,
@@ -74,8 +74,14 @@ class _PageThreeState extends State<PageThree> {
     exitDialog(context, "Game Over", "", "");
   }
 
+  void winnerDialogueBox() {
+    exitDialog(context, "WINNER", "Again", "Exit");
+  }
+
   void updateHiddenWordGrid(letter) {
+
     print('updateHiddenWordGrid: $letter');
+
     for (int i = 0; i < hiddenWord.length; i++) {
       if (hiddenWord[i] == letter && !revealedHiddenWord[i]) {
         setState(() {
@@ -84,21 +90,12 @@ class _PageThreeState extends State<PageThree> {
         break;
       }
       else {
-
           orange--;
-          incorrect++;
-          if(orange==0){
-            gameOverDialogueBox();
-          }
-        ;
-        break;
-      }
+          incorrect = incorrect + 1;
+        }
     }
 
 
-    void winnerDialogueBox() {
-      exitDialog(context, "WINNER", "Again", "Exit");
-    }
 
 
 
@@ -113,7 +110,6 @@ class _PageThreeState extends State<PageThree> {
             gameState.currentModelIndex) {
           print('You won the game!');
           winnerDialogueBox();
-
           return;
         }
         gameState.currentModelIndex++;
@@ -126,6 +122,8 @@ class _PageThreeState extends State<PageThree> {
       }
     }
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -459,18 +457,4 @@ class _PageThreeState extends State<PageThree> {
   }
 }
 
-// WordSearch(),
-// Row(
-//   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//   children: [
-//     GradientLetter("A", 42, 42, 10.92, 5.46, 25.93),
-//     GradientLetter("E", 42, 42, 10.92, 5.46, 25.93),
-//     GradientLetter("T", 42, 42, 10.92, 5.46, 25.93),
-//     GradientLetter("I", 42, 42, 10.92, 5.46, 25.93),
-//     GradientLetter("P", 42, 42, 10.92, 5.46, 25.93),
-//     GradientLetter("M", 42, 42, 10.92, 5.46, 25.93),
-//     GradientLetter("O", 42, 42, 10.92, 5.46, 25.93),
-//   ],
-// ),
-// SizedBox(height: 7),
-//
+
