@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Input extends StatefulWidget {
   final String hintText;
-  const Input( this.hintText, {super.key});
+  const Input(this.hintText, {super.key});
 
   @override
   State<Input> createState() => _InputState();
@@ -44,13 +44,6 @@ class _InputState extends State<Input> {
             ),
             filled: true,
             fillColor: Color(0xFF111111),
-            // suffixIcon: IconButton(
-            //   onPressed: () {
-            //     TextEditingController().clear();
-            //   },
-            //   icon: Icon(Icons.clear),
-            //   color: Color(0xFFA0A0A0),
-            // )
             ),
         onSubmitted: (text) {
           setState(() {

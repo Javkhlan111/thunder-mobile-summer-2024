@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "944257305365",
+    "project_id": "thunder-lesson-23-javkhlan",
+    "storage_bucket": "thunder-lesson-23-javkhlan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:944257305365:android:1a06748fe73ad733b0371c",
+        "android_client_info": {
+          "package_name": "mn.icode.lesson_day_23"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvCPF1bl1WQt6EgqeKvrPBcH5US4uJdO0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

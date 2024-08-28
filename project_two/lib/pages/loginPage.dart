@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_two/pages/register.dart';
 import 'package:project_two/widgets/button.dart';
 import '../widgets/input.dart';
 
@@ -69,16 +70,23 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     SizedBox(width: 5,),
-                    Text(
-                      'Бүртгүүлэх',
-                      style: TextStyle(
-                        color: Color(0xFFE76A01),
-                        fontSize: 15,
-                        fontFamily: 'Rubik',
-                        fontWeight: FontWeight.w400,
-                        decoration: TextDecoration.underline,
-                        decorationColor: Color(0xFFE76A01),
-                        height: 0,
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => RegisterPage()),
+                        );
+                      },
+                      child: Text(
+                        'Бүртгүүлэх',
+                        style: TextStyle(
+                          color: Color(0xFFE76A01),
+                          fontSize: 15,
+                          fontFamily: 'Rubik',
+                          fontWeight: FontWeight.w400,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Color(0xFFE76A01),
+                          height: 0,
+                        ),
                       ),
                     ),
 

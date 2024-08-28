@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "209726173385",
+    "firebase_url": "https://thunder-project-3ca4b-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "thunder-project-3ca4b",
+    "storage_bucket": "thunder-project-3ca4b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:209726173385:android:b6ba5676d478f32c9b5d18",
+        "android_client_info": {
+          "package_name": "com.example.lesson_day_20"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBT27-StUpd1SXRQgZRyyII42sMX34vYOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
